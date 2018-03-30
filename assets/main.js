@@ -37,18 +37,19 @@ function display() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-
+      
         console.log(response.data);
+var res =response.data;
 
-        //  var still = response.data["0"].images.fixed_height_small_still
-        var ani = response.data["0"].source;
+       // var still = res.images["480w_still"];
+        var ani = res["0"].images.fixed_height.url;
         var actorImg = $('<img>');
         actorImg.attr('src', ani)
 
         console.log(ani);
 
         $('#gifView').append(actorImg);
-        //gifView.append(still)
+       // $('#gifView').append(still)
 
     });
 
