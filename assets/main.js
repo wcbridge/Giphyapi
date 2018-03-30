@@ -38,19 +38,28 @@ function display() {
         method: "GET"
     }).then(function (response) {
       
-        console.log(response.data);
+       
 var res =response.data;
 
-       // var still = res.images["480w_still"];
-        var ani = res["0"].images.fixed_height.url;
-        var actorImg = $('<img>');
-        actorImg.attr('src', ani)
+for (let i = 0; i < 9; i++) {
+    
+    
 
-        console.log(ani);
+        var still = res[i].images.fixed_height_still.url;
+        var ani = res[i].images.fixed_height.url;
+        var actorAni = $('<img>');
+        actorAni.attr('src', ani)
+       
 
-        $('#gifView').append(actorImg);
-       // $('#gifView').append(still)
+        var actorStill=$('<img>');
+        actorStill.attr('src', still)
+      console.log(ani)
+      console.log(still)
 
+        $('#gifView').prepend(actorStill)
+
+        $('#gifView').prepend(actorAni);
+}
     });
 
 }
