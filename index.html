@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Actorman</title>
+
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
-    <script src="assets/main.js"></script>
 </head>
+
 <body>
-    <button data-act="momoa">Jason Momoa</button>
-    <div id="gifs"></div>
- 
+    <div id="buttons-view"></div>
+    <form id="actor-form">
+        <label for="actor-input">Actor</label>
+        <input type="text" id="actor-input">
+        <br>
+
+        <!-- Button triggers new movie to be added -->
+        <input id="add-actor" type="submit" value="Add">
+    </form>
+    <div id="gifView"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/main.js"></script>
+
 </body>
+
 </html>

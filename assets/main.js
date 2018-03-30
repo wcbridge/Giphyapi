@@ -1,26 +1,59 @@
 
-$("button").on("click", function() {
-var arch = $(this).attr("data-act");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q="+arch+"&api_key=ImTetxx1SW2DcKfvhQE6l23mcj4wxnOk";
+var actors = ["Jason Momoa", "James Dean", "Anton Yelchin", "Errol FLynn"];
+
+function renderButtons() {
 
 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
+    $("#buttons-view").empty();
 
-    
-var results = response.data;
-console.log(results);
-for (var i = 0; i < results.length; i++) {
-    var actDiv = $("<div>");
 
-    var actImage = $("<img>");
-    actImage.attr("src", results[i].images.fixed_height.url);
+    for (var i = 0; i < actors.length; i++) {
 
-    actDiv.prepend(actImage);
 
-    $("#gifs").prepend(actDiv);
-            }
+        var a = $("<button>");
+        a.addClass("actor-btn");
+        a.attr("data-name", actors[i]);
+        ;
+        a.text(actors[i]);
+        $("#buttons-view").append(a);
+    }
+    //  console.log(actors);
+}
+
+$("#add-actor").on("click", function (event) {
+    event.preventDefault();
+    var actor = $("#actor-input").val().trim();
+    actors.push(actor);
+
+    renderButtons();
 });
-});
+
+function display() {
+
+    var actor = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + actor + "&api_key=ImTetxx1SW2DcKfvhQE6l23mcj4wxnOk";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+
+        console.log(response.data);
+
+        //  var still = response.data["0"].images.fixed_height_small_still
+        var ani = response.data["0"].source;
+        var actorImg = $('<img>');
+        actorImg.attr('src', ani)
+
+        console.log(ani);
+
+        $('#gifView').append(actorImg);
+        //gifView.append(still)
+
+    });
+
+}
+
+$(document).on("click", ".actor-btn", display);
+
+renderButtons()
