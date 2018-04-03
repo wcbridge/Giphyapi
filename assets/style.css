@@ -1,3 +1,15 @@
+body{
+ background-color: black
+}
+
 button {
     margin: 10px;
+}
+
+#actor-input {
+    margin: 10px;
+}
+
+.gif {
+    margin: 10px
 }
